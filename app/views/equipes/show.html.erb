@@ -1,0 +1,41 @@
+<%= turbo_frame_tag @equipe do %>
+  <div class="mb-5">
+    <h4 class="h5 ms-1 mb-1 fw-bold"><%= @equipe.nome %></h4>
+
+    <table class="ms-1 mb-2">
+      <thead>
+        <tr>
+          <th class="fw-normal text-muted" style="font-size: 70%; letter-spacing: .05rem;">AVALIADOR</th>
+
+          <% if @equipe.padrinho.present? %>
+            <th class="ps-4 fw-normal small text-muted" style="font-size: 70%; letter-spacing: .05rem;">PADRINHO</th>
+          <% end %>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+            <div class="d-flex align-items-center">
+              <%= image_tag @equipe.avaliador.avatar_url, class: "avatar avatar-xs rounded-circle" %>
+              <span class="ms-1 small"><%= @equipe.avaliador.nome %></span>
+            </div>
+          </td>
+
+          <% if @equipe.padrinho.present? %>
+            <td class="ps-4">
+              <div class="d-flex align-items-center">
+                <%= image_tag @equipe.padrinho.avatar_url, class: "avatar avatar-xs rounded-circle" %>
+                <span class="ms-1 small"><%= @equipe.padrinho.nome %></span>
+              </div>
+            </td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="puzzle-8 clearfix" style="width: 51rem;">
+      <%= render @equipe.participacoes %>
+    </div>
+  </div>
+<% end %>

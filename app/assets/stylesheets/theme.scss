@@ -1,0 +1,6 @@
+@import 'bootstrap/scss/functions';
+@import 'theme/variables';
+@import 'bootstrap/scss/bootstrap';
+@import 'theme/theme';
+
+.card-body p:last-child { margin-bottom: 0; }

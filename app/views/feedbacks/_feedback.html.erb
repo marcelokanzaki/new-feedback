@@ -1,0 +1,254 @@
+<div class="mb-5 position-relative">
+  <div class="card" style="border-color: RGB(232, 229, 221); z-index: 10;">
+    <div class="card-body position-relative overflow-hidden" style="background-color: rgba(248, 246, 242, 0.3);">
+      <%= icon "quote", size: 42, style: "color: #b3aee9; margin-top: -10px; margin-left: -7px" %>
+      <%= simple_format feedback.mensagem %>
+    </div>
+
+    <div class="card-footer d-flex small" style="border-color: RGB(232, 229, 221); background-color: rgba(248, 246, 242, 0.3);">
+      <div class="text-muted">
+        <%= feedback.ciclo.nome %> – <%= feedback.equipe.nome %>
+      </div>
+
+      <div class="ms-auto">
+        – <span><%= feedback.autor.nome %></span>,
+        <span class="text-muted">
+          <span>há</span>
+          <span data-controller="tooltip" title="<%= l feedback.created_at %>">
+            <%= time_ago_in_words(feedback.created_at) %>
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <figure class="position-absolute" style="top: -22px; left: -30px; z-index: 5;">
+    <svg height="160" viewBox="0 0 200 200" style="fill: #5143d9; opacity: .2;">
+      <circle cx="194.2" cy="2.2" r="2.2"></circle>
+      <circle cx="2.2" cy="2.2" r="2.2"></circle>
+      <circle cx="218.2" cy="2.2" r="2.2"></circle>
+      <circle cx="26.2" cy="2.2" r="2.2"></circle>
+      <circle cx="242.2" cy="2.2" r="2.2"></circle>
+      <circle cx="50.2" cy="2.2" r="2.2"></circle>
+      <circle cx="266.2" cy="2.2" r="2.2"></circle>
+      <circle cx="74.2" cy="2.2" r="2.2"></circle>
+      <circle cx="290.2" cy="2.2" r="2.2"></circle>
+      <circle cx="98.2" cy="2.2" r="2.2"></circle>
+      <circle cx="314.2" cy="2.2" r="2.2"></circle>
+      <circle cx="122.2" cy="2.2" r="2.2"></circle>
+      <circle cx="338.2" cy="2.2" r="2.2"></circle>
+      <circle cx="146.2" cy="2.2" r="2.2"></circle>
+      <circle cx="170.2" cy="2.2" r="2.2"></circle>
+      <circle cx="194.2" cy="26.2" r="2.2"></circle>
+      <circle cx="2.2" cy="26.2" r="2.2"></circle>
+      <circle cx="218.2" cy="26.2" r="2.2"></circle>
+      <circle cx="26.2" cy="26.2" r="2.2"></circle>
+      <circle cx="242.2" cy="26.2" r="2.2"></circle>
+      <circle cx="50.2" cy="26.2" r="2.2"></circle>
+      <circle cx="266.2" cy="26.2" r="2.2"></circle>
+      <circle cx="74.2" cy="26.2" r="2.2"></circle>
+      <circle cx="290.2" cy="26.2" r="2.2"></circle>
+      <circle cx="98.2" cy="26.2" r="2.2"></circle>
+      <circle cx="314.2" cy="26.2" r="2.2"></circle>
+      <circle cx="122.2" cy="26.2" r="2.2"></circle>
+      <circle cx="338.2" cy="26.2" r="2.2"></circle>
+      <circle cx="146.2" cy="26.2" r="2.2"></circle>
+      <circle cx="170.2" cy="26.2" r="2.2"></circle>
+      <circle cx="194.2" cy="50.2" r="2.2"></circle>
+      <circle cx="2.2" cy="50.2" r="2.2"></circle>
+      <circle cx="218.2" cy="50.2" r="2.2"></circle>
+      <circle cx="26.2" cy="50.2" r="2.2"></circle>
+      <circle cx="242.2" cy="50.2" r="2.2"></circle>
+      <circle cx="50.2" cy="50.2" r="2.2"></circle>
+      <circle cx="266.2" cy="50.2" r="2.2"></circle>
+      <circle cx="74.2" cy="50.2" r="2.2"></circle>
+      <circle cx="290.2" cy="50.2" r="2.2"></circle>
+      <circle cx="98.2" cy="50.2" r="2.2"></circle>
+      <circle cx="314.2" cy="50.2" r="2.2"></circle>
+      <circle cx="122.2" cy="50.2" r="2.2"></circle>
+      <circle cx="338.2" cy="50.2" r="2.2"></circle>
+      <circle cx="146.2" cy="50.2" r="2.2"></circle>
+      <circle cx="170.2" cy="50.2" r="2.2"></circle>
+      <circle cx="194.2" cy="74.2" r="2.2"></circle>
+      <circle cx="2.2" cy="74.2" r="2.2"></circle>
+      <circle cx="218.2" cy="74.2" r="2.2"></circle>
+      <circle cx="26.2" cy="74.2" r="2.2"></circle>
+      <circle cx="242.2" cy="74.2" r="2.2"></circle>
+      <circle cx="50.2" cy="74.2" r="2.2"></circle>
+      <circle cx="266.2" cy="74.2" r="2.2"></circle>
+      <circle cx="74.2" cy="74.2" r="2.2"></circle>
+      <circle cx="290.2" cy="74.2" r="2.2"></circle>
+      <circle cx="98.2" cy="74.2" r="2.2"></circle>
+      <circle cx="314.2" cy="74.2" r="2.2"></circle>
+      <circle cx="122.2" cy="74.2" r="2.2"></circle>
+      <circle cx="338.2" cy="74.2" r="2.2"></circle>
+      <circle cx="146.2" cy="74.2" r="2.2"></circle>
+      <circle cx="170.2" cy="74.2" r="2.2"></circle>
+      <circle cx="194.2" cy="98.2" r="2.2"></circle>
+      <circle cx="2.2" cy="98.2" r="2.2"></circle>
+      <circle cx="218.2" cy="98.2" r="2.2"></circle>
+      <circle cx="26.2" cy="98.2" r="2.2"></circle>
+      <circle cx="242.2" cy="98.2" r="2.2"></circle>
+      <circle cx="50.2" cy="98.2" r="2.2"></circle>
+      <circle cx="266.2" cy="98.2" r="2.2"></circle>
+      <circle cx="74.2" cy="98.2" r="2.2"></circle>
+      <circle cx="290.2" cy="98.2" r="2.2"></circle>
+      <circle cx="98.2" cy="98.2" r="2.2"></circle>
+      <circle cx="314.2" cy="98.2" r="2.2"></circle>
+      <circle cx="122.2" cy="98.2" r="2.2"></circle>
+      <circle cx="338.2" cy="98.2" r="2.2"></circle>
+      <circle cx="146.2" cy="98.2" r="2.2"></circle>
+      <circle cx="170.2" cy="98.2" r="2.2"></circle>
+      <circle cx="194.2" cy="122.2" r="2.2"></circle>
+      <circle cx="2.2" cy="122.2" r="2.2"></circle>
+      <circle cx="218.2" cy="122.2" r="2.2"></circle>
+      <circle cx="26.2" cy="122.2" r="2.2"></circle>
+      <circle cx="242.2" cy="122.2" r="2.2"></circle>
+      <circle cx="50.2" cy="122.2" r="2.2"></circle>
+      <circle cx="266.2" cy="122.2" r="2.2"></circle>
+      <circle cx="74.2" cy="122.2" r="2.2"></circle>
+      <circle cx="290.2" cy="122.2" r="2.2"></circle>
+      <circle cx="98.2" cy="122.2" r="2.2"></circle>
+      <circle cx="314.2" cy="122.2" r="2.2"></circle>
+      <circle cx="122.2" cy="122.2" r="2.2"></circle>
+      <circle cx="338.2" cy="122.2" r="2.2"></circle>
+      <circle cx="146.2" cy="122.2" r="2.2"></circle>
+      <circle cx="170.2" cy="122.2" r="2.2"></circle>
+      <circle cx="194.2" cy="146.2" r="2.2"></circle>
+      <circle cx="2.2" cy="146.2" r="2.2"></circle>
+      <circle cx="218.2" cy="146.2" r="2.2"></circle>
+      <circle cx="26.2" cy="146.2" r="2.2"></circle>
+      <circle cx="242.2" cy="146.2" r="2.2"></circle>
+      <circle cx="50.2" cy="146.2" r="2.2"></circle>
+      <circle cx="266.2" cy="146.2" r="2.2"></circle>
+      <circle cx="74.2" cy="146.2" r="2.2"></circle>
+      <circle cx="290.2" cy="146.2" r="2.2"></circle>
+      <circle cx="98.2" cy="146.2" r="2.2"></circle>
+      <circle cx="314.2" cy="146.2" r="2.2"></circle>
+      <circle cx="122.2" cy="146.2" r="2.2"></circle>
+      <circle cx="338.2" cy="146.2" r="2.2"></circle>
+      <circle cx="146.2" cy="146.2" r="2.2"></circle>
+      <circle cx="170.2" cy="146.2" r="2.2"></circle>
+      <circle cx="194.2" cy="170.2" r="2.2"></circle>
+      <circle cx="2.2" cy="170.2" r="2.2"></circle>
+      <circle cx="218.2" cy="170.2" r="2.2"></circle>
+      <circle cx="26.2" cy="170.2" r="2.2"></circle>
+      <circle cx="242.2" cy="170.2" r="2.2"></circle>
+      <circle cx="50.2" cy="170.2" r="2.2"></circle>
+      <circle cx="266.2" cy="170.2" r="2.2"></circle>
+      <circle cx="74.2" cy="170.2" r="2.2"></circle>
+      <circle cx="290.2" cy="170.2" r="2.2"></circle>
+      <circle cx="98.2" cy="170.2" r="2.2"></circle>
+      <circle cx="314.2" cy="170.2" r="2.2"></circle>
+      <circle cx="122.2" cy="170.2" r="2.2"></circle>
+      <circle cx="338.2" cy="170.2" r="2.2"></circle>
+      <circle cx="146.2" cy="170.2" r="2.2"></circle>
+      <circle cx="170.2" cy="170.2" r="2.2"></circle>
+      <circle cx="194.2" cy="194.2" r="2.2"></circle>
+      <circle cx="2.2" cy="194.2" r="2.2"></circle>
+      <circle cx="218.2" cy="194.2" r="2.2"></circle>
+      <circle cx="26.2" cy="194.2" r="2.2"></circle>
+      <circle cx="242.2" cy="194.2" r="2.2"></circle>
+      <circle cx="50.2" cy="194.2" r="2.2"></circle>
+      <circle cx="266.2" cy="194.2" r="2.2"></circle>
+      <circle cx="74.2" cy="194.2" r="2.2"></circle>
+      <circle cx="290.2" cy="194.2" r="2.2"></circle>
+      <circle cx="98.2" cy="194.2" r="2.2"></circle>
+      <circle cx="314.2" cy="194.2" r="2.2"></circle>
+      <circle cx="122.2" cy="194.2" r="2.2"></circle>
+      <circle cx="338.2" cy="194.2" r="2.2"></circle>
+      <circle cx="146.2" cy="194.2" r="2.2"></circle>
+      <circle cx="170.2" cy="194.2" r="2.2"></circle>
+      <circle cx="194.2" cy="218.2" r="2.2"></circle>
+      <circle cx="2.2" cy="218.2" r="2.2"></circle>
+      <circle cx="218.2" cy="218.2" r="2.2"></circle>
+      <circle cx="26.2" cy="218.2" r="2.2"></circle>
+      <circle cx="242.2" cy="218.2" r="2.2"></circle>
+      <circle cx="50.2" cy="218.2" r="2.2"></circle>
+      <circle cx="266.2" cy="218.2" r="2.2"></circle>
+      <circle cx="74.2" cy="218.2" r="2.2"></circle>
+      <circle cx="290.2" cy="218.2" r="2.2"></circle>
+      <circle cx="98.2" cy="218.2" r="2.2"></circle>
+      <circle cx="314.2" cy="218.2" r="2.2"></circle>
+      <circle cx="122.2" cy="218.2" r="2.2"></circle>
+      <circle cx="338.2" cy="218.2" r="2.2"></circle>
+      <circle cx="146.2" cy="218.2" r="2.2"></circle>
+      <circle cx="170.2" cy="218.2" r="2.2"></circle>
+      <circle cx="194.2" cy="242.2" r="2.2"></circle>
+      <circle cx="2.2" cy="242.2" r="2.2"></circle>
+      <circle cx="218.2" cy="242.2" r="2.2"></circle>
+      <circle cx="26.2" cy="242.2" r="2.2"></circle>
+      <circle cx="242.2" cy="242.2" r="2.2"></circle>
+      <circle cx="50.2" cy="242.2" r="2.2"></circle>
+      <circle cx="266.2" cy="242.2" r="2.2"></circle>
+      <circle cx="74.2" cy="242.2" r="2.2"></circle>
+      <circle cx="290.2" cy="242.2" r="2.2"></circle>
+      <circle cx="98.2" cy="242.2" r="2.2"></circle>
+      <circle cx="314.2" cy="242.2" r="2.2"></circle>
+      <circle cx="122.2" cy="242.2" r="2.2"></circle>
+      <circle cx="338.2" cy="242.2" r="2.2"></circle>
+      <circle cx="146.2" cy="242.2" r="2.2"></circle>
+      <circle cx="170.2" cy="242.2" r="2.2"></circle>
+      <circle cx="194.2" cy="266.2" r="2.2"></circle>
+      <circle cx="2.2" cy="266.2" r="2.2"></circle>
+      <circle cx="218.2" cy="266.2" r="2.2"></circle>
+      <circle cx="26.2" cy="266.2" r="2.2"></circle>
+      <circle cx="242.2" cy="266.2" r="2.2"></circle>
+      <circle cx="50.2" cy="266.2" r="2.2"></circle>
+      <circle cx="266.2" cy="266.2" r="2.2"></circle>
+      <circle cx="74.2" cy="266.2" r="2.2"></circle>
+      <circle cx="290.2" cy="266.2" r="2.2"></circle>
+      <circle cx="98.2" cy="266.2" r="2.2"></circle>
+      <circle cx="314.2" cy="266.2" r="2.2"></circle>
+      <circle cx="122.2" cy="266.2" r="2.2"></circle>
+      <circle cx="338.2" cy="266.2" r="2.2"></circle>
+      <circle cx="146.2" cy="266.2" r="2.2"></circle>
+      <circle cx="170.2" cy="266.2" r="2.2"></circle>
+      <circle cx="194.2" cy="290.2" r="2.2"></circle>
+      <circle cx="2.2" cy="290.2" r="2.2"></circle>
+      <circle cx="218.2" cy="290.2" r="2.2"></circle>
+      <circle cx="26.2" cy="290.2" r="2.2"></circle>
+      <circle cx="242.2" cy="290.2" r="2.2"></circle>
+      <circle cx="50.2" cy="290.2" r="2.2"></circle>
+      <circle cx="266.2" cy="290.2" r="2.2"></circle>
+      <circle cx="74.2" cy="290.2" r="2.2"></circle>
+      <circle cx="290.2" cy="290.2" r="2.2"></circle>
+      <circle cx="98.2" cy="290.2" r="2.2"></circle>
+      <circle cx="314.2" cy="290.2" r="2.2"></circle>
+      <circle cx="122.2" cy="290.2" r="2.2"></circle>
+      <circle cx="338.2" cy="290.2" r="2.2"></circle>
+      <circle cx="146.2" cy="290.2" r="2.2"></circle>
+      <circle cx="170.2" cy="290.2" r="2.2"></circle>
+      <circle cx="194.2" cy="314.2" r="2.2"></circle>
+      <circle cx="2.2" cy="314.2" r="2.2"></circle>
+      <circle cx="218.2" cy="314.2" r="2.2"></circle>
+      <circle cx="26.2" cy="314.2" r="2.2"></circle>
+      <circle cx="242.2" cy="314.2" r="2.2"></circle>
+      <circle cx="50.2" cy="314.2" r="2.2"></circle>
+      <circle cx="266.2" cy="314.2" r="2.2"></circle>
+      <circle cx="74.2" cy="314.2" r="2.2"></circle>
+      <circle cx="290.2" cy="314.2" r="2.2"></circle>
+      <circle cx="98.2" cy="314.2" r="2.2"></circle>
+      <circle cx="314.2" cy="314.2" r="2.2"></circle>
+      <circle cx="122.2" cy="314.2" r="2.2"></circle>
+      <circle cx="338.2" cy="314.2" r="2.2"></circle>
+      <circle cx="146.2" cy="314.2" r="2.2"></circle>
+      <circle cx="170.2" cy="314.2" r="2.2"></circle>
+      <circle cx="194.2" cy="338.2" r="2.2"></circle>
+      <circle cx="2.2" cy="338.2" r="2.2"></circle>
+      <circle cx="218.2" cy="338.2" r="2.2"></circle>
+      <circle cx="26.2" cy="338.2" r="2.2"></circle>
+      <circle cx="242.2" cy="338.2" r="2.2"></circle>
+      <circle cx="50.2" cy="338.2" r="2.2"></circle>
+      <circle cx="266.2" cy="338.2" r="2.2"></circle>
+      <circle cx="74.2" cy="338.2" r="2.2"></circle>
+      <circle cx="290.2" cy="338.2" r="2.2"></circle>
+      <circle cx="98.2" cy="338.2" r="2.2"></circle>
+      <circle cx="314.2" cy="338.2" r="2.2"></circle>
+      <circle cx="122.2" cy="338.2" r="2.2"></circle>
+      <circle cx="338.2" cy="338.2" r="2.2"></circle>
+      <circle cx="146.2" cy="338.2" r="2.2"></circle>
+      <circle cx="170.2" cy="338.2" r="2.2"></circle>
+    </svg>
+  </figure>
+</div>

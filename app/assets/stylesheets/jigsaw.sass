@@ -1,0 +1,61 @@
+.jigsaw-tile
+  align-items: center
+  border-bottom: 2px solid #000
+  border-top: 2px solid #000
+  display: block
+  display: flex
+  float: left
+  height: 100px
+  justify-content: center
+  margin-top: -2px
+  overflow: hidden
+  position: relative
+  underline: none
+  width: 100px
+
+  &:hover
+    background-color: #ccc
+
+  .avatar
+    z-index: 1
+    img
+      border: 2px solid #fff
+      box-shadow: 0 0 4px rgba(255, 255, 255, .7)
+
+  .check-mark
+    background: image-url('check-mark.png') no-repeat
+    width: 17px
+    height: 17px
+    position: absolute
+    z-index: 2
+    border: 1px solid #555
+    border-radius: 50%
+    bottom: 4px
+    right: 4px
+
+  .jigsaw-tile-side
+    background: image-url('jigsaw-tile-side.png') no-repeat
+    width: 51px
+    height: 100px
+    position: absolute
+    top: 0
+    left: 0
+    z-index: 2
+
+  .jigsaw-add
+    background: image-url('jigsaw-add.png') no-repeat
+    width: 100px
+    height: 100px
+
+  &:last-child
+    border-right: 2px solid #000
+
+@for $i from 1 through 8
+  .puzzle-#{$i}
+    .jigsaw-tile:nth-child(#{$i}n)
+      border-right: 2px solid #000
+
+    .jigsaw-tile:nth-child(#{$i}n + 1)
+      border-left: 2px solid #000
+      .jigsaw-tile-side
+        display: none

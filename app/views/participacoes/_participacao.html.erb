@@ -1,0 +1,6 @@
+<%= link_to [participacao.ciclo, participacao], data: { turbo_frame: :participacao, controller: "participacao-link" }, class: "jigsaw-tile", title: participacao.participante.nome do %>
+  <span class="avatar avatar-xl">
+    <%= image_tag participacao.participante.avatar_url, class: "avatar-img rounded-circle" %>
+  </span>
+  <span class="jigsaw-tile-side"></span>
+<% end %>

@@ -1,0 +1,31 @@
+<%= turbo_frame_tag :participacao do %>
+  <div class="modal-content position-relative">
+    <div class="modal-header px-4 py-4" style="position: sticky; top: 0; z-index: 1055; background-color: white;">
+      <div class="d-flex align-items-center">
+        <span class="avatar">
+          <%= image_tag @participacao.participante.avatar_url, class: "avatar-img rounded-circle" %>
+        </span>
+
+        <div class="ms-2">
+          <h5 class="modal-title mb-0 lh-sm"><%= @participacao.participante.nome %></h5>
+          <div><%= @participacao.equipe.nome %></div>
+        </div>
+      </div>
+
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modal-body pt-4 px-5">
+      <%= turbo_frame_tag "new-feedback" do %>
+        <div class="text-center pt-3">
+          <%= link_to "Registrar feedback", new_participacao_feedback_path(@participacao), class: "btn btn-primary" %>
+          <%= link_to "Anotações", new_participacao_feedback_path(@participacao), class: "btn btn-warning" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="modal-body pt-4 px-5 pb-0">
+      <%= render @feedbacks %>
+    </div>
+  </div>
+<% end %>
