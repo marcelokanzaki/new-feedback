@@ -4,6 +4,7 @@ set :deploy_to, '/var/www/newfeedback'
 set :keep_releases, 1
 set :yarn_flags, '--production --silent --no-progress --ignore-engines'
 set :branch, :main
+append :linked_dirs, '.bundle'
 
 append :linked_files, '.env'
 
