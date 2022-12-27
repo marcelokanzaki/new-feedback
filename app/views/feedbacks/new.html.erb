@@ -25,11 +25,6 @@
     <% end %>
 
     <%= form_for [@participacao, @feedback] do |f| %>
-      <details class="mb-3">
-        <summary>Modelo</summary>
-        <p>Alinhamento inicial/quebra gelo: escrever o parecer geral de como foram os três meses, ressaltando que a conversa se refere a esse período.</p>
-      </details>
-
       <%= f.text_area :mensagem, class: "form-control", placeholder: "Seu feedback..." %>
 
       <div class="d-grid pt-2">
