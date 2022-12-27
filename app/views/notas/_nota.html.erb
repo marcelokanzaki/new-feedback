@@ -1,0 +1,6 @@
+<%= turbo_frame_tag nota do %>
+  <%= form_for nota, html: { class: "mt-2" } do |f| %>
+    <%= f.rich_text_area :texto, class: "trix-merge trix-content", placeholder: "Conteúdo", style: "height: auto;", data: { controller: :notas, action: "trix-change->notas#save" }, spellcheck: false %>
+    <%= f.submit hidden: true %>
+  <% end %>
+<% end %>

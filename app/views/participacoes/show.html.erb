@@ -1,6 +1,6 @@
 <%= turbo_frame_tag :participacao do %>
   <div class="modal-content position-relative">
-    <div class="modal-header px-4 py-4" style="position: sticky; top: 0; z-index: 1055; background-color: white;">
+    <div class="modal-header align-items-center px-4 pt-4 pb-4" style="position: sticky; top: 0; z-index: 1055; background-color: white;">
       <div class="d-flex align-items-center">
         <span class="avatar">
           <%= image_tag @participacao.participante.avatar_url, class: "avatar-img rounded-circle" %>
@@ -16,12 +16,19 @@
     </div>
 
     <div class="modal-body pt-4 px-5">
-      <%= turbo_frame_tag "new-feedback" do %>
-        <div class="text-center pt-3">
-          <%= link_to "Registrar feedback", new_participacao_feedback_path(@participacao), class: "btn btn-primary" %>
-          <%= link_to "Anotações", new_participacao_feedback_path(@participacao), class: "btn btn-warning" %>
-        </div>
+      <details class="mb-2">
+        <summary>Registrar feedback</summary>
+
+        <%= turbo_frame_tag "feedback-form", src: new_participacao_feedback_path(@participacao), loading: :lazy %>
+      </details>
+
+      <% if @nota %>
+        <details class="mb-2">
+          <summary>Anotações</summary>
+          <%= render @nota %>
+        </details>
       <% end %>
+
     </div>
 
     <div class="modal-body pt-4 px-5 pb-0">

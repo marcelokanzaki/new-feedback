@@ -7,6 +7,13 @@ class ParticipacoesController < ApplicationController
       .joins(:participacao)
       .where(participacoes: { participante: @participacao.participante })
       .order(created_at: :desc)
+
+    if current_usuario == @participacao.equipe&.avaliador
+      @nota = Nota.find_or_create_by(
+        participante: @participacao.participante,
+        avaliador: @participacao.equipe.avaliador
+      )
+    end
   end
 
   private

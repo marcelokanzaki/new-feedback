@@ -1,38 +1,37 @@
 import { Controller } from '@hotwired/stimulus'
 import { Modal } from 'bootstrap'
 
+
+
 export default class extends Controller {
-  initialize() {
-    if (!window.participacaoModalInstance) {
-      window.participacaoModalInstance = new Modal(this._modal)
-    }
-
-    this._instance = window.participacaoModalInstance
-    this._modal.addEventListener('hide.bs.modal', this._unloadFrame, false)
-  }
-
   connect() {
-    this.element.addEventListener('click', this._show.bind(this), false)
-
+    if (!window.participacaoModalInstance) {
+      this._setupModal()
+    }
   }
 
   disconnect() {
-    this.element.removeEventListener('click', this._show.bind(this), false)
+    if (window.participacaoModalInstance) {
+      delete window.participacaoModalInstance
+    }
+  }
+
+  showModal() {
+    console.log(window.participacaoModalInstance)
+    window.participacaoModalInstance.show()
   }
 
   // PRIVATE
 
-  _unloadFrame() {
-    const frame = this.querySelector('turbo-frame')
-    frame.src = null
-    frame.innerHTML = ''
-  }
+  _setupModal() {
+    const modalEl = document.getElementById('participacao-modal')
+    window.participacaoModalInstance = new Modal(modalEl)
 
-  _show() {
-    this._instance.show()
-  }
-
-  get _modal() {
-    return document.getElementById('participacao-modal')
+    modalEl.addEventListener('hide.bs.modal', () => {
+      console.log('closing modal')
+      const frame = modalEl.querySelector('turbo-frame')
+      frame.src = null
+      frame.innerHTML = ''
+    })
   }
 }

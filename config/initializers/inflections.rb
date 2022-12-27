@@ -7,4 +7,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'avaliar', 'avaliacoes'
   inflect.irregular 'agencia', 'agencias'
   inflect.irregular 'avaliacao', 'avaliacoes'
+  inflect.irregular 'nota', 'notas'
 end

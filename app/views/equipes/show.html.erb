@@ -19,6 +19,9 @@
             <div class="d-flex align-items-center">
               <%= image_tag @equipe.avaliador.avatar_url, class: "avatar avatar-xs rounded-circle" %>
               <span class="ms-1 small"><%= @equipe.avaliador.nome %></span>
+              <%= link_to impersonate_usuario_path(@equipe.avaliador), class: "text-muted" do %>
+                <%= icon "dot", size: 30 %>
+              <% end %>
             </div>
           </td>
 

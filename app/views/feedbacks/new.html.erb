@@ -1,7 +1,5 @@
-<%= turbo_frame_tag "new-feedback" do %>
+<%= turbo_frame_tag "feedback-form" do %>
   <div class="rounded p-4 border" style="background-color: rgba(248, 246, 242, 0.3);">
-    <!-- <canvas id="confetti-canvas"></canvas> -->
-
     <%= form_for @avaliacao do |f| %>
       <table class="table table-hover mb-4">
         <thead>
@@ -27,20 +25,15 @@
     <% end %>
 
     <%= form_for [@participacao, @feedback] do |f| %>
-      <details class="mb-2">
-        <summary>Anotações</summary>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-      </details>
-
       <details class="mb-3">
         <summary>Modelo</summary>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p>Alinhamento inicial/quebra gelo: escrever o parecer geral de como foram os três meses, ressaltando que a conversa se refere a esse período.</p>
       </details>
 
       <%= f.text_area :mensagem, class: "form-control", placeholder: "Seu feedback..." %>
 
-      <div class="pt-2">
-        <%= f.submit "Registrar avaliação", class: "btn btn-primary", data: { controller: "confetti" } %>
+      <div class="d-grid pt-2">
+        <%= f.submit "Registrar avaliação", class: "btn btn-primary", data: { controller: "confetti", action: "confetti#shoot" } %>
       </div>
     <% end %>
   </div>

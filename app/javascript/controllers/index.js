@@ -10,6 +10,9 @@ application.register("confetti", ConfettiController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import NotasController from "./notas_controller"
+application.register("notas", NotasController)
+
 import ParticipacaoLinkController from "./participacao_link_controller"
 application.register("participacao-link", ParticipacaoLinkController)
 
