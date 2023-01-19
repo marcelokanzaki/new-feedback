@@ -1,0 +1,12 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <%= simple_form_for [ciclo, equipe] do |f| %>
+      <%= f.input :nome, input_html: { autofocus: true, autocomplete: :off } %>
+      <%= f.association :avaliador, input_html: { data: { controller: :choicesjs } } %>
+      <%= f.association :padrinho, input_html: { data: { controller: :choicesjs } } %>
+
+      <%= f.submit class: "btn btn-primary" %>
+      <%= link_to "Cancelar", equipe.new_record? ? new_ciclo_equipe_path(ciclo, cancelar: true) : edit_equipe_path(equipe, cancelar: true), class: "btn btn-secondary" %>
+    <% end %>
+  </div>
+</div>

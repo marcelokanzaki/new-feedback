@@ -1,44 +1,44 @@
 <%= turbo_frame_tag @equipe do %>
-  <div class="mb-5">
-    <h4 class="h5 ms-1 mb-1 fw-bold"><%= @equipe.nome %></h4>
+  <div class="card mb-5">
+    <div class="card-header d-flex align-items-center border-0 pt-5">
+      <div class="col">
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label fw-bolder text-dark fs-3"><%= @equipe.nome %></span>
+          <span class="text-muted mt-2 fs-7"><%= pluralize @equipe.participacoes.count, "participante", "participantes" %></span>
+        </h3>
+      </div>
 
-    <table class="ms-1 mb-2">
-      <thead>
-        <tr>
-          <th class="fw-normal text-muted" style="font-size: 70%; letter-spacing: .05rem;">AVALIADOR</th>
+      <% if @equipe.avaliador.present? %>
+        <div class="col-auto">
+          <%= render "equipes/responsavel", usuario: @equipe.avaliador, descricao: "Avaliador" %>
+        </div>
+      <% end %>
 
-          <% if @equipe.padrinho.present? %>
-            <th class="ps-4 fw-normal small text-muted" style="font-size: 70%; letter-spacing: .05rem;">PADRINHO</th>
-          <% end %>
-        </tr>
-      </thead>
+      <% if @equipe.padrinho.present? %>
+        <div class="col-auto ms-7">
+          <%= render "equipes/responsavel", usuario: @equipe.padrinho, descricao: "Padrinho" %>
+        </div>
+      <% end %>
 
-      <tbody>
-        <tr>
-          <td>
-            <div class="d-flex align-items-center">
-              <%= image_tag @equipe.avaliador.avatar_url, class: "avatar avatar-xs rounded-circle" %>
-              <span class="ms-1 small"><%= @equipe.avaliador.nome %></span>
-              <%= link_to impersonate_usuario_path(@equipe.avaliador), class: "text-muted" do %>
-                <%= icon "dot", size: 30 %>
-              <% end %>
-            </div>
-          </td>
+      <% if current_usuario.admin? %>
+        <div class="col-auto ms-12">
+          <a data-bs-toggle="dropdown" class="text-muted" href=""><%= icon "gear" %></a>
 
-          <% if @equipe.padrinho.present? %>
-            <td class="ps-4">
-              <div class="d-flex align-items-center">
-                <%= image_tag @equipe.padrinho.avatar_url, class: "avatar avatar-xs rounded-circle" %>
-                <span class="ms-1 small"><%= @equipe.padrinho.nome %></span>
-              </div>
-            </td>
-          <% end %>
-        </tr>
-      </tbody>
-    </table>
+          <div class="dropdown-menu">
+            <%= link_to "Editar", [:edit, @equipe], class: "dropdown-item" %>
+            <%= link_to "Deletar equipe", @equipe, class: "dropdown-item text-danger", data: { turbo_method: :delete, turbo_confirm: "Tem certeza?" } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-    <div class="puzzle-8 clearfix" style="width: 51rem;">
-      <%= render @equipe.participacoes %>
+    <div class="card-body px-6 pt-5 pb-4" style="overflow-x: scroll;">
+      <div id="<%= dom_id @equipe, :puzzle %>" class="puzzle clearfix">
+        <%= render @equipe.participacoes %>
+        <%= render "equipes/add_participacao_btn", equipe: @equipe %>
+      </div>
+
+      <%= turbo_frame_tag :participacoes_form, @equipe %>
     </div>
   </div>
 <% end %>

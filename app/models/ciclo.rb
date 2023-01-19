@@ -25,12 +25,12 @@ end
 #
 # Table name: ciclos
 #
-#  id                      :integer          not null, primary key
+#  id                      :bigint           not null, primary key
+#  fim                     :date
+#  inicio                  :date
 #  nome                    :string           default(""), not null
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
 #  quantidade_de_feedbacks :integer          default(1), not null
 #  status                  :integer          default("configurando"), not null
-#  inicio                  :date
-#  fim                     :date
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
 #

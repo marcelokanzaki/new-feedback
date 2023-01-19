@@ -1,1 +1,32 @@
-<%= render @ciclo.equipes %>
+<div class="row g-5 g-xxl-8">
+  <div class="col-xl-4">
+    <div class="card sticky-top">
+      <div class="card-body d-flex">
+        <div>
+          <h2 class="fw-bolder text-dark fs-2"><%= @ciclo.nome %></h2>
+          <span class="text-muted mt-2 fw-bold fs-6">
+            <span><%= pluralize @ciclo.participacoes.count, "participante", "participantes" %>,</span>
+            <span><%= pluralize @ciclo.equipes.count, "equipe", "equipes" %></span>
+          </span>
+        </div>
+
+        <div class="ms-auto">
+          <a data-bs-toggle="dropdown" class="text-muted" href=""><%= icon "gear", size: 14 %></a>
+
+          <div class="dropdown-menu">
+            <%= link_to "Nova equipe", new_ciclo_equipe_path(@ciclo), data: { turbo_frame: "nova-equipe" }, class: "dropdown-item" %>
+            <%= link_to "Editar ciclo", [:edit, @ciclo], class: "dropdown-item" %>
+            <%= link_to "Clonar ciclo", [:clonar, @ciclo], class: "dropdown-item", data: { turbo_method: :patch, turbo_confirm: "Tem certeza?" } %>
+            <%= link_to "Deletar ciclo", @ciclo, class: "dropdown-item text-danger", data: { turbo_method: :delete, turbo_confirm: "Tem certeza?" } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-8">
+    <%= turbo_frame_tag "nova-equipe", target: :_top %>
+    <%= render @equipes %>
+  </div>
+</div>
+

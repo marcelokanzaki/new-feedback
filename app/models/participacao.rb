@@ -8,7 +8,6 @@ class Participacao < ApplicationRecord
   attachment :avatar
   has_many :feedbacks, -> { order(created_at: :desc) }, dependent: :destroy
   has_one :ciclo, through: :equipe
-  has_one :avaliacao
 
   validates :participante_id, on: :create, exclusion: { in: :participantes_do_ciclo }
   validates_uniqueness_of :participante_id, scope: [:equipe_id]
@@ -16,7 +15,7 @@ class Participacao < ApplicationRecord
   scope :por_agencia, -> agencia { joins(:participante).where(agencia: agencia)  }
   scope :concluida, -> { where(concluida: true) }
 
-  before_create :agencia_cache
+  before_validation :agencia_cache
 
   delegate :ciclo, to: :equipe
 
@@ -47,17 +46,25 @@ end
 #
 # Table name: participacoes
 #
-#  id                  :integer          not null, primary key
-#  equipe_id           :integer
-#  participante_id     :integer
-#  created_at          :datetime
-#  updated_at          :datetime
-#  avatar_id           :string
+#  id                  :bigint           not null, primary key
+#  avatar_aprovado     :boolean          default(FALSE), not null
+#  avatar_content_type :string
 #  avatar_filename     :string
 #  avatar_size         :integer
-#  avatar_content_type :string
-#  avatar_aprovado     :boolean          default(FALSE), not null
-#  concluida           :boolean          default(FALSE), not null
-#  agencia_id          :integer          not null
 #  com_copia           :boolean          default(FALSE), not null
+#  concluida           :boolean          default(FALSE), not null
+#  created_at          :datetime
+#  updated_at          :datetime
+#  agencia_id          :integer          not null
+#  avatar_id           :string
+#  equipe_id           :bigint
+#  participante_id     :integer
+#
+# Indexes
+#
+#  index_participacoes_on_equipe_id  (equipe_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (equipe_id => equipes.id)
 #

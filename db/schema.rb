@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_26_192605) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_13_200032) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "hstore"
@@ -79,17 +79,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_192605) do
     t.index ["url"], name: "index_aplicativos_on_url", unique: true
   end
 
-  create_table "avaliacoes", force: :cascade do |t|
-    t.integer "responsabilidade"
-    t.integer "comprometimento"
-    t.integer "produtividade"
-    t.integer "atendimento_humanizado"
-    t.bigint "participacao_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["participacao_id"], name: "index_avaliacoes_on_participacao_id"
-  end
-
   create_table "ciclos", force: :cascade do |t|
     t.string "nome", default: "", null: false
     t.datetime "created_at", precision: nil, null: false
@@ -145,6 +134,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_192605) do
     t.datetime "updated_at", precision: nil, null: false
     t.boolean "presencial"
     t.boolean "possivel_copia", default: false, null: false
+    t.integer "responsabilidade"
+    t.integer "comprometimento"
+    t.integer "produtividade"
+    t.integer "atendimento_humanizado"
+    t.text "comentario_do_participante"
+    t.integer "formato"
     t.index ["participacao_id"], name: "index_feedbacks_on_participacao_id"
   end
 
@@ -253,7 +248,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_26_192605) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "avaliacoes", "participacoes"
   add_foreign_key "equipes", "usuarios", column: "padrinho_id"
   add_foreign_key "feedbacks", "participacoes"
   add_foreign_key "notas", "usuarios", column: "avaliador_id"

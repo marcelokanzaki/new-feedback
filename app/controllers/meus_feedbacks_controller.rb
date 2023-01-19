@@ -1,7 +1,8 @@
 class MeusFeedbacksController < ApplicationController
   def show
-    @feedbacks = Feedback.limit(10)
-      # .joins(:participacao)
-      # .where(participacoes: { participante: current_usuario })
+    @feedbacks = Feedback
+      .joins(:participacao)
+      .where(participacoes: { participante: current_usuario })
+      .order(created_at: :desc)
   end
 end

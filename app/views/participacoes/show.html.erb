@@ -1,6 +1,6 @@
 <%= turbo_frame_tag :participacao do %>
   <div class="modal-content position-relative">
-    <div class="modal-header align-items-center px-4 pt-4 pb-4" style="position: sticky; top: 0; z-index: 1055; background-color: white;">
+    <div class="modal-header align-items-center" style="position: sticky; top: 0; z-index: 1055; background-color: white;">
       <div class="d-flex align-items-center">
         <span class="avatar">
           <%= image_tag @participacao.participante.avatar_url, class: "avatar-img rounded-circle" %>
@@ -8,14 +8,23 @@
 
         <div class="ms-2">
           <h5 class="modal-title mb-0 lh-sm"><%= @participacao.participante.nome %></h5>
-          <div><%= @participacao.equipe.nome %></div>
+          <span class="align-middle me-1"><%= @participacao.equipe.nome %></span>
+          <span>
+            <a data-bs-toggle="dropdown" class="text-muted" href="#">
+              <%= icon "gear", size: 13 %>
+            </a>
+
+            <div class="dropdown-menu">
+              <%= link_to "Impersonate", impersonate_usuario_path(@participacao.participante), class: "dropdown-item" %>
+            </div>
+          </span>
         </div>
       </div>
 
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
 
-    <div class="modal-body pt-4 px-5">
+    <div class="modal-body">
       <details class="mb-2">
         <summary>Registrar feedback</summary>
 
@@ -67,7 +76,7 @@
 
     </div>
 
-    <div class="modal-body pt-4 px-5 pb-0">
+    <div class="modal-body">
       <%= render @feedbacks %>
     </div>
   </div>

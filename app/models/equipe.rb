@@ -7,6 +7,11 @@ class Equipe < ApplicationRecord
 
   validates_presence_of :nome
 
+  def hierarquia
+    children = Equipe.where(ciclo_id: ciclo_id, avaliador_id: participacoes.pluck(:participante_id))
+    [self] + children + children.map(&:hierarquia).flatten.uniq
+  end
+
   def conclusao
     (participacoes.concluida.count / participacoes.count) * 100
   rescue
@@ -18,12 +23,21 @@ end
 #
 # Table name: equipes
 #
-#  id           :integer          not null, primary key
-#  ciclo_id     :integer          not null
+#  id           :bigint           not null, primary key
+#  concluida    :boolean          default(FALSE), not null
 #  nome         :string           default(""), not null
-#  avaliador_id :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  padrinho_id  :integer
-#  concluida    :boolean          default(FALSE), not null
+#  avaliador_id :integer
+#  ciclo_id     :bigint           not null
+#  padrinho_id  :bigint
+#
+# Indexes
+#
+#  index_equipes_on_ciclo_id     (ciclo_id)
+#  index_equipes_on_padrinho_id  (padrinho_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (padrinho_id => usuarios.id)
 #

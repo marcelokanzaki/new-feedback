@@ -1,0 +1,34 @@
+<%= turbo_frame_tag :participacoes_form, @equipe do %>
+  <%= turbo_stream.remove dom_id(@equipe, :add_participante_btn) %>
+
+  <div class="row mt-3 g-3 align-items-center">
+    <div class="col-md-8 col-lg-6 col-xl-5">
+      <%= form_with url: new_equipe_participacao_path(@equipe), method: :get, data: { turbo_frame: dom_id(@equipe, :candidatos) } do |f| %>
+        <%= f.search_field :q, class: "form-control", autofocus: true, placeholder: "Buscar colaboradores" %>
+      <% end %>
+
+      <%= form_with url: equipe_participacoes_path(@equipe) do |f| %>
+        <div class="list-group list-group-flush my-2" style="max-height: 20vh; overflow-y: scroll;">
+          <%= turbo_frame_tag :candidatos, @equipe do %>
+            <% @candidatos.each do |usuario| %>
+              <div class="list-group-item">
+                <%= check_box_tag "usuarios[]", usuario.id, false, id: dom_id(usuario, :candidato), class: "form-check-input me-1" %>
+                <%= label_tag dom_id(usuario, :candidato), usuario.nome %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+        <%= f.submit "Adicionar participates", class: "btn btn-primary" %>
+        <%= link_to "Cancelar", new_equipe_participacao_path(@equipe, cancelar: true), class: "btn btn-secondary" %>
+      <% end %>
+    </div>
+  </div>
+<% end unless params[:cancelar] %>
+
+<%= turbo_frame_tag :participacoes_form, @equipe do %>
+
+  <%= turbo_stream.append dom_id(@equipe, :puzzle), partial: "equipes/add_participacao_btn", locals: { equipe: @equipe } %>
+
+<% end if params[:cancelar] %>
+

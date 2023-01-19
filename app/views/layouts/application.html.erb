@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
@@ -14,7 +14,7 @@
     <%= render "navbar" if usuario_signed_in? %>
     <%= render "participacao_modal" if usuario_signed_in? %>
 
-    <div class="container" style="padding-top: 6rem;">
+    <div class="container">
       <%= yield %>
     </div>
   </body>

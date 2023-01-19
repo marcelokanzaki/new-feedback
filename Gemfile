@@ -93,4 +93,10 @@ gem "refile-mini_magick"
 gem "simple_form"
 gem "rails-i18n"
 gem "searchkick"
+gem "elasticsearch"
 gem "pretender"
+gem "annotate", group: :development
+gem "enum_help", "~> 0.0.18"
+gem "deep_cloneable", "~> 3.2.0"
+
+gem "cssbundling-rails", "~> 1.1"

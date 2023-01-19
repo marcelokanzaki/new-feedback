@@ -50,12 +50,88 @@
   &:last-child
     border-right: 2px solid #000
 
-@for $i from 1 through 8
-  .puzzle-#{$i}
-    .jigsaw-tile:nth-child(#{$i}n)
-      border-right: 2px solid #000
+.puzzle
+  min-width: 800px
 
-    .jigsaw-tile:nth-child(#{$i}n + 1)
-      border-left: 2px solid #000
-      .jigsaw-tile-side
-        display: none
+  .jigsaw-tile:nth-child(8n)
+    border-right: 2px solid #000
+  .jigsaw-tile:nth-child(8n + 1)
+    border-left: 2px solid #000
+    .jigsaw-tile-side
+      display: none
+
+// @include media-breakpoint-up(sm)
+//   .puzzle
+//     background-color: yellow
+
+// @include media-breakpoint-up(md) // 6
+//   .puzzle
+//     background-color: lightpink
+
+//   .jigsaw-tile:nth-child(6n)
+//     border-right: 2px solid #000 !important
+//   .jigsaw-tile:nth-child(6n + 1)
+//     border-left: 2px solid #000 !important
+//     .jigsaw-tile-side
+//       display: none !important
+
+//   .jigsaw-tile:nth-child(8n)
+//     border-right: none
+//   .jigsaw-tile:nth-child(8n + 1)
+//     border-left: none
+//     .jigsaw-tile-side
+//       display: block
+
+// @include media-breakpoint-up(lg) // 8
+//   .puzzle
+//     background-color: lightgreen
+
+//   .jigsaw-tile:nth-child(6n)
+//     border-right: none
+//   .jigsaw-tile:nth-child(6n + 1)
+//     border-left: none
+//     .jigsaw-tile-side
+//       display: block
+
+//   .jigsaw-tile:nth-child(8n)
+//     border-right: 2px solid #000
+//   .jigsaw-tile:nth-child(8n + 1)
+//     border-left: 2px solid #000
+//     .jigsaw-tile-side
+//       display: none
+
+// @include media-breakpoint-up(xl) // 6
+//   .puzzle
+//     background-color: lightcoral
+
+//   .jigsaw-tile:nth-child(6n)
+//     border-right: 2px solid #000 !important
+//   .jigsaw-tile:nth-child(6n + 1)
+//     border-left: 2px solid #000 !important
+//     .jigsaw-tile-side
+//       display: none !important
+
+//   .jigsaw-tile:nth-child(8n)
+//     border-right: none
+//   .jigsaw-tile:nth-child(8n + 1)
+//     border-left: none
+//     .jigsaw-tile-side
+//       display: block
+
+// @include media-breakpoint-up(xxl) // 8
+//   .puzzle
+//     background-color: lightskyblue
+
+//   .jigsaw-tile:nth-child(6n)
+//     border-right: none
+//   .jigsaw-tile:nth-child(6n + 1)
+//     border-left: none
+//     .jigsaw-tile-side
+//       display: block
+
+//   .jigsaw-tile:nth-child(8n)
+//     border-right: 2px solid #000
+//   .jigsaw-tile:nth-child(8n + 1)
+//     border-left: 2px solid #000
+//     .jigsaw-tile-side
+//       display: none

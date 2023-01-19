@@ -1,0 +1,8 @@
+<%= simple_form_for ciclo do |f| %>
+  <%= f.input :nome, label: false, placeholder: "Dê um nome ao ciclo...", autofocus: true, input_html: { autocomplete: :off } %>
+  <%= f.input :quantidade_de_feedbacks, required: true %>
+  <%= f.input :inicio, required: true, as: :date %>
+  <%= f.input :fim, required: true, as: :date %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+  <%= link_to "Cancelar", :back, class: "btn btn-secondary" %>
+<% end %>

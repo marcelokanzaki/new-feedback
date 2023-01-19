@@ -1,6 +1,23 @@
 class ParticipacoesController < ApplicationController
-  before_action :find_ciclo, only: [:show]
+  before_action :find_equipe, only: [:new, :create]
   before_action :find_participacao, only: [:show]
+
+  def new
+    @candidatos = Usuario.ativo.where('nome @@ :full_text AND nome ilike :ilike', {
+      full_text: params[:q],
+      ilike: "%#{params[:q]}%"
+    }).limit(30)
+  end
+
+  def create
+    usuarios = Usuario.find(usuario_ids)
+
+    usuarios.each do |usuario|
+      Participacao.create(participante: usuario, equipe: @equipe)
+    end
+
+    render turbo_stream: turbo_stream.replace(@equipe)
+  end
 
   def show
     @feedbacks = Feedback
@@ -18,8 +35,12 @@ class ParticipacoesController < ApplicationController
 
   private
 
-  def find_ciclo
-    @ciclo = Ciclo.find(params[:ciclo_id])
+  def usuario_ids
+    params.permit(usuarios: [])[:usuarios] || []
+  end
+
+  def find_equipe
+    @equipe = Equipe.find(params[:equipe_id])
   end
 
   def find_participacao

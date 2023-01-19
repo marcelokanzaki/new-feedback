@@ -1,0 +1,16 @@
+<div data-controller="tooltip" class="d-flex align-items-center" title="<%= usuario.nome %>" style="cursor: default;">
+  <div class="symbol symbol-35px me-2">
+    <% if usuario.avatar.present? %>
+      <%= image_tag usuario.avatar_url %>
+    <% else %>
+      <div class="symbol-label fs-2 fw-bold bg-secondary text-success">
+        <%= usuario.nome[0] %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="lh-sm">
+    <div><%= usuario.nome.split.first %></div>
+    <div class="text-muted"><%= descricao %></div>
+  </div>
+</div>

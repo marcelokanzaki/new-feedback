@@ -1,0 +1,83 @@
+// @import 'bootstrap/scss/functions';
+// @import 'ext/variables';
+// @import 'bootstrap/scss/bootstrap';
+@import 'ext/theme';
+
+.card-body p:last-child { margin-bottom: 0; }
+
+.competencia-progress {
+  margin: 4px 0;
+  padding: .3em 0;
+  width: 100%;
+
+  .nota {
+    font-size: 80%;
+    opacity: .35;
+    color: white;
+    border-radius: 50em;
+    padding: .2em .5rem;
+  }
+
+  .nota-fill {
+    background-color: rgba(255, 255, 255, .3);
+    opacity: 1;
+  }
+
+  &-1 {
+    border-radius: 50em 0 0 50em;
+  }
+
+  &-5 {
+    border-radius: 0 50em 50em 0;
+  }
+
+  &-responsabilidade {
+    background-color: rgba(79, 201, 218, .4);
+
+    &.competencia-progress-fill {
+      background-color: rgba(79, 201, 218, 1);
+    }
+  }
+
+  &-comprometimento {
+    background-color: rgba(184, 217, 53, .4);
+
+    &.competencia-progress-fill {
+      background-color: rgba(184, 217, 53, 1);
+    }
+  }
+
+  &-produtividade {
+    background-color: rgba(240, 100, 69, .4);
+
+    &.competencia-progress-fill {
+      background-color: rgba(240, 100, 69, 1);
+    }
+  }
+
+  &-atendimento-humanizado {
+    background-color: rgba(79, 85, 218, .4);
+
+    &.competencia-progress-fill {
+      background-color: rgba(79, 85, 218, 1);
+    }
+  }
+}
+
+.sqline {
+  position: absolute;
+  height: 10px;
+  width: 100%;
+  transform: translate(-25%) scale(0.6)
+}
+
+.sqline1 {
+  background: linear-gradient(45deg, transparent, transparent 49%, black 49%, transparent 51%);
+}
+.sqline2 {
+  background: linear-gradient(-45deg, transparent, transparent 49%, black 49%, transparent 51%);
+}
+
+.sqline {
+  background-size: 20px 20px;
+}

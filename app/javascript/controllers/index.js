@@ -4,6 +4,12 @@
 
 import { application } from "./application"
 
+import AutosizeController from "./autosize_controller"
+application.register("autosize", AutosizeController)
+
+import ChoicesjsController from "./choicesjs_controller"
+application.register("choicesjs", ChoicesjsController)
+
 import ConfettiController from "./confetti_controller"
 application.register("confetti", ConfettiController)
 
