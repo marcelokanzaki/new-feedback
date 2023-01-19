@@ -124,8 +124,6 @@ GEM
       ssrf_filter (~> 1.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
-    cssbundling-rails (1.1.2)
-      railties (>= 6.0.0)
     database_cleaner (2.0.1)
       database_cleaner-active_record (~> 2.0.0)
     database_cleaner-active_record (2.0.1)
@@ -383,7 +381,6 @@ DEPENDENCIES
   capistrano-rails
   capybara
   carrierwave
-  cssbundling-rails (~> 1.1)
   database_cleaner
   debug
   deep_cloneable (~> 3.2.0)

@@ -98,5 +98,4 @@ gem "pretender"
 gem "annotate", group: :development
 gem "enum_help", "~> 0.0.18"
 gem "deep_cloneable", "~> 3.2.0"
-
-gem "cssbundling-rails", "~> 1.1"
+# gem "cssbundling-rails", "~> 1.1"
