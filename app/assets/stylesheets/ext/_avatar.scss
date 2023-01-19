@@ -25,10 +25,10 @@ $avatar-title-color: #fff !default;
     position: absolute;
     width: 0;
     height: 0;
-    background-image: asset-url("masks/avatar-status.svg"),
-    asset-url("masks/avatar-group.svg"),
-    asset-url("masks/avatar-group-hover.svg"),
-    asset-url("masks/avatar-group-hover-last.svg");
+    // background-image: asset-url("masks/avatar-status.svg"),
+    // asset-url("masks/avatar-group.svg"),
+    // asset-url("masks/avatar-group-hover.svg"),
+    // asset-url("masks/avatar-group-hover-last.svg");
   }
 }
 
@@ -160,7 +160,7 @@ $avatar-title-color: #fff !default;
   // Add some spacing between avatars
 
   .avatar:not(:last-child) {
-    mask-image: asset-url("masks/avatar-group.svg");
+    // mask-image: asset-url("masks/avatar-group.svg");
     mask-size: 100% 100%;
   }
 
@@ -171,11 +171,11 @@ $avatar-title-color: #fff !default;
     z-index: 1;
 
     + .avatar {
-      mask-image: asset-url("masks/avatar-group-hover.svg");
+      // mask-image: asset-url("masks/avatar-group-hover.svg");
       mask-size: 100% 100%;
 
       &:last-child {
-        mask-image: asset-url("masks/avatar-group-hover-last.svg");
+        // mask-image: asset-url("masks/avatar-group-hover-last.svg");
       }
     }
   }
