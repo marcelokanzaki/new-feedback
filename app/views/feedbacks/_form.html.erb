@@ -1,0 +1,38 @@
+<div class="rounded p-6 border" style="background-color: rgba(248, 246, 242, 0.3);">
+  <%= form_for [participacao, feedback] do |f| %>
+    <table class="mb-4" style="width: 100%;">
+      <thead>
+        <tr style="border-bottom: 1px dashed #fefefe;">
+          <td>Avaliação</td>
+          <% (1..4).each do |nota| %>
+            <td class="text-muted text-center"><%= nota %></td>
+          <% end %>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% Feedback::CRITERIOS_DE_AVALIACAO.each do |criterio| %>
+          <tr>
+            <td colspan="6">
+              <div class="separator separator-dashed border-muted my-3"></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-muted"><%= criterio.to_s.humanize %></td>
+            <% (1..4).each do |nota| %>
+              <td class="text-center">
+                <%= f.radio_button criterio, nota, required: true %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= f.text_area :mensagem, class: "form-control", placeholder: "Seu feedback...", data: { controller: :autosize } %>
+
+    <div class="d-grid pt-2">
+      <%= f.submit "Registrar avaliação", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

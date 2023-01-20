@@ -22,6 +22,10 @@ class Feedback < ApplicationRecord
   after_destroy :cache_conclusao_da_participacao
   after_save :atualizar_conclusao_da_equipe
 
+  def avaliacao?
+    CRITERIOS_DE_AVALIACAO.map { |criterio| send(criterio).present? }.all?
+  end
+
   private
 
   def cache_conclusao_da_participacao
@@ -36,7 +40,7 @@ class Feedback < ApplicationRecord
       body_options: { min_score: 1.2 },
       where: { autor_id: { all: [autor.id] }}
     ).any?
-    update_attributes(possivel_copia: possivel_copia)
+    update_attribute(:possivel_copia, possivel_copia)
   end
 
   def cache_possivel_copia

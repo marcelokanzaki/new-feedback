@@ -1,36 +1,33 @@
 <div class="mb-5 position-relative">
   <div class="card" style="border-color: RGB(232, 229, 221); z-index: 10;">
-    <div class="card-body pb-0" style="background-color: rgba(248, 246, 242, 0.3);">
-      <table class="w-100" cellpadding="0">
-        <tbody>
-          <% [
-              OpenStruct.new(nome: "Responsabilidade", nota: rand(5) + 1),
-              OpenStruct.new(nome: "Comprometimento", nota: rand(5) + 1),
-              OpenStruct.new(nome: "Produtividade", nota: rand(5) + 1),
-              OpenStruct.new(nome: "Atendimento humanizado", nota: rand(5) + 1)
-             ].each do |competencia| %>
-            <tr>
-              <td class="text-muted"><%= competencia.nome %></td>
-              <% (1..5).each do |n| %>
-                <td class="text-center">
-                  <div class="competencia-progress competencia-progress-<%= competencia.nome.parameterize %> competencia-progress-<%= n %> <%= "competencia-progress-fill" if n <= competencia.nota %>">
-                    <span class="nota <%= "nota-fill" if n == competencia.nota %>">
-                      <%= n %>
-                    </span>
-                  </div>
-                </td>
-              <% end %>
-            </tr>
+    <% if feedback.avaliacao? %>
+      <div class="card-body pb-0" style="background-color: rgba(248, 246, 242, 0.3);">
+        <table class="w-100" cellpadding="0">
+          <tbody>
+            <% Feedback::CRITERIOS_DE_AVALIACAO.each do |competencia| %>
+              <tr>
+                <td class="text-muted"><%= competencia.to_s.humanize %></td>
+                <% (1..4).each do |n| %>
+                  <td class="text-center">
+                    <div class="competencia-progress competencia-progress-<%= competencia.to_s.dasherize %> competencia-progress-<%= n %> <%= "competencia-progress-fill" if n <= feedback.send(competencia) %>">
+                      <span class="nota <%= "nota-fill" if n == feedback.send(competencia) %>">
+                        <%= n %>
+                      </span>
+                    </div>
+                  </td>
+                <% end %>
+              </tr>
 
-            <tr>
-              <td colspan="6">
-                <div class="separator separator-dashed border-muted my-3"></div>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+              <tr>
+                <td colspan="6">
+                  <div class="separator separator-dashed border-muted my-3"></div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
 
     <div class="card-body position-relative overflow-hidden" style="background-color: rgba(248, 246, 242, 0.3);">
       <%= icon "quote", size: 42, style: "color: #b3aee9; margin-top: -10px; margin-left: -7px" %>
@@ -67,6 +64,8 @@
       </div>
     <% end %>
   </div>
+
+  <%= tag.div data: { controller: :confetti } if flash[:confetti] %>
 
   <figure class="position-absolute" style="top: -22px; left: -30px; z-index: 5;">
     <svg height="160" viewBox="0 0 200 200" style="fill: #5143d9; opacity: .2;">

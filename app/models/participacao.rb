@@ -1,6 +1,5 @@
 class Participacao < ApplicationRecord
   include ApplicationHelper
-  attr_accessor :avatar_url, :feedbacks
 
   belongs_to :equipe
   belongs_to :participante, class_name: "Usuario"
@@ -15,7 +14,7 @@ class Participacao < ApplicationRecord
   scope :por_agencia, -> agencia { joins(:participante).where(agencia: agencia)  }
   scope :concluida, -> { where(concluida: true) }
 
-  before_validation :agencia_cache
+  before_validation :set_agencia
 
   delegate :ciclo, to: :equipe
 
@@ -27,17 +26,13 @@ class Participacao < ApplicationRecord
     avatar.present? && !avatar_aprovado?
   end
 
-  def avatar_url
-    @avatar_url || ActionController::Base.helpers.asset_path("default_avatar")
-  end
-
   private
 
   def participantes_do_ciclo
     equipe.ciclo.participacoes.pluck(:participante_id)
   end
 
-  def agencia_cache
+  def set_agencia
     self.agencia = participante.agencia
   end
 end
