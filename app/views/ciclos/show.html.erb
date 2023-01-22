@@ -21,6 +21,22 @@
           </div>
         </div>
       </div>
+
+      <div class="card-footer">
+        <ul class="nav flex-column nav-pills">
+          <li class="nav-item">
+            <%= link_to "Todas as equipes", nil, class: "nav-link #{"active" unless params[:view]}" %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "Hierarquia", params.permit!.merge(view: "hierarquia"), class: "nav-link #{"active" if params[:view] == "hierarquia"}" %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "Minha equipe", params.permit!.merge(view: "minha-equipe"), class: "nav-link #{"active" if params[:view] == "minha-equipe"}" %>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 

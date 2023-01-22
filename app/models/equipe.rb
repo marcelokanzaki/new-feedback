@@ -9,7 +9,7 @@ class Equipe < ApplicationRecord
 
   def hierarquia
     children = Equipe.where(ciclo_id: ciclo_id, avaliador_id: participacoes.pluck(:participante_id))
-    [self] + children + children.map(&:hierarquia).flatten.uniq
+    ([self] + children + children.map(&:hierarquia).flatten).uniq
   end
 
   def conclusao

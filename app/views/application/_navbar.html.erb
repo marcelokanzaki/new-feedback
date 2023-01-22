@@ -32,7 +32,6 @@
   </div>
 
   <div class="d-flex align-items-center flex-nowrap text-nowrap overflow-auto py-1">
-    <%= link_to "Minhas equipes", minhas_equipes_path, class: "btn btn-active-accent fw-bolder ms-3 #{"active" if current_page?(meus_feedbacks_path)}" %>
     <%= link_to "Meus feedbacks", meus_feedbacks_path, class: "btn btn-active-accent fw-bolder ms-3 #{"active" if current_page?(meus_feedbacks_path)}" %>
     <%= image_tag current_usuario.avatar_url, class: "ms-5 rounded-circle", style: "width: 32px;", title: "#{current_usuario.nome} (#{current_usuario.id})" %>
   </div>

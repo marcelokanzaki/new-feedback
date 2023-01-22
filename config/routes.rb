@@ -21,7 +21,6 @@ Rails.application.routes.draw do
 
   resources :notas, only: [:edit, :update]
   resource :meus_feedbacks, only: [:show]
-  resource :minhas_equipes, only: [:show]
 
   root "home#show"
 end
