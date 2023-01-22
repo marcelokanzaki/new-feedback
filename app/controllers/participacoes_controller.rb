@@ -20,10 +20,14 @@ class ParticipacoesController < ApplicationController
   end
 
   def show
-    @feedbacks = Feedback
-      .joins(:participacao)
-      .where(participacoes: { participante: @participacao.participante })
-      .order(created_at: :desc)
+    ciclo = @participacao.ciclo
+    equipe_avaliador = Equipe.find_by(ciclo: ciclo, avaliador: current_usuario)
+
+    @feedbacks = if equipe_avaliador && equipe_avaliador.hierarquia.include?(@participacao.equipe)
+      @participacao.participante.feedbacks
+    else
+      []
+    end
 
     if current_usuario == @participacao.equipe&.avaliador
       @nota = Nota.find_or_create_by(

@@ -6,7 +6,7 @@ class Usuario < ApplicationRecord
 
   belongs_to :agencia
   has_many :participacoes, foreign_key: :participante_id
-  has_many :feedbacks, through: :participacoes, source: :participante
+  has_many :feedbacks, -> { order(created_at: :desc) }, through: :participacoes
   has_many :equipes, through: :participacoes
 
   scope :ativo, -> { where(ativo: true) }
