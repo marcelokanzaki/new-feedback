@@ -9,17 +9,18 @@
             <span><%= pluralize @ciclo.equipes.count, "equipe", "equipes" %></span>
           </span>
         </div>
+        <% if current_usuario.admin? %>
+          <div class="ms-auto">
+            <a data-bs-toggle="dropdown" class="text-muted" href=""><%= icon "gear", size: 14 %></a>
 
-        <div class="ms-auto">
-          <a data-bs-toggle="dropdown" class="text-muted" href=""><%= icon "gear", size: 14 %></a>
-
-          <div class="dropdown-menu">
-            <%= link_to "Nova equipe", new_ciclo_equipe_path(@ciclo), data: { turbo_frame: "nova-equipe" }, class: "dropdown-item" %>
-            <%= link_to "Editar ciclo", [:edit, @ciclo], class: "dropdown-item" %>
-            <%= link_to "Clonar ciclo", [:clonar, @ciclo], class: "dropdown-item", data: { turbo_method: :patch, turbo_confirm: "Tem certeza?" } %>
-            <%= link_to "Deletar ciclo", @ciclo, class: "dropdown-item text-danger", data: { turbo_method: :delete, turbo_confirm: "Tem certeza?" } %>
+            <div class="dropdown-menu">
+              <%= link_to "Nova equipe", new_ciclo_equipe_path(@ciclo), data: { turbo_frame: "nova-equipe" }, class: "dropdown-item" %>
+              <%= link_to "Editar ciclo", [:edit, @ciclo], class: "dropdown-item" %>
+              <%= link_to "Clonar ciclo", [:clonar, @ciclo], class: "dropdown-item", data: { turbo_method: :patch, turbo_confirm: "Tem certeza?" } %>
+              <%= link_to "Deletar ciclo", @ciclo, class: "dropdown-item text-danger", data: { turbo_method: :delete, turbo_confirm: "Tem certeza?" } %>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
 
       <div class="card-footer">
