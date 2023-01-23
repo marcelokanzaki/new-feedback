@@ -1,0 +1,13 @@
+from: postgres://deployer@10.10.0.205:5432/metropolitano
+to: postgres://localhost:5432/sicoobtools
+to_safe: true
+
+groups:
+  feedback:
+    - public.agencias
+    - public.usuarios
+    - public.permissoes
+    - feedback.ciclos
+    - feedback.equipes
+    - feedback.participacoes
+    - feedback.feedbacks
