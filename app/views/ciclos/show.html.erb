@@ -2,14 +2,22 @@
   <div class="col-xl-4">
     <div class="card sticky-top">
       <div class="card-body d-flex">
-        <div>
+        <div class="col">
           <h2 class="fw-bolder text-dark fs-2"><%= @ciclo.nome %></h2>
-          <span class="text-muted mt-2 fw-bold fs-6">
-            <span><%= pluralize @ciclo.participacoes.count, "participante", "participantes" %>,</span>
-            <span><%= pluralize @ciclo.equipes.count, "equipe", "equipes" %></span>
-          </span>
-        </div>
+          <div class="row">
+            <span class="text-muted fw-bold fs-6">
+              <span><%= @ciclo.inicio.strftime('%-d %b %Y') %> - </span>
+              <span><%= @ciclo.fim.strftime('%-d %b %Y')%></span>
+            </span>
+          </div>
+          <div class="row">
+            <span class="text-muted mt-2 fw-bold fs-6">
+              <span><%= pluralize @ciclo.participacoes.count, "participante", "participantes" %>,</span>
+              <span><%= pluralize @ciclo.equipes.count, "equipe", "equipes" %></span>
+            </span>
+          </div>
 
+        </div>
         <div class="ms-auto">
           <a data-bs-toggle="dropdown" class="text-muted" href=""><%= icon "gear", size: 14 %></a>
 
