@@ -94,8 +94,7 @@ gem "refile", git: "https://github.com/refile/refile.git", require: "refile/rail
 gem "refile-mini_magick"
 gem "simple_form"
 gem "rails-i18n"
-gem "searchkick"
-gem "elasticsearch"
+gem "searchkick", "~> 3.1.1"
 gem "pretender"
 gem "annotate", group: :development
 gem "enum_help", "~> 0.0.18"
