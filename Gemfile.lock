@@ -150,13 +150,13 @@ GEM
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
-    elastic-transport (8.1.0)
-      faraday (< 3)
+    elasticsearch (6.1.0)
+      elasticsearch-api (= 6.1.0)
+      elasticsearch-transport (= 6.1.0)
+    elasticsearch-api (6.1.0)
       multi_json
-    elasticsearch (8.6.0)
-      elastic-transport (~> 8)
-      elasticsearch-api (= 8.6.0)
-    elasticsearch-api (8.6.0)
+    elasticsearch-transport (6.1.0)
+      faraday
       multi_json
     enum_help (0.0.19)
       activesupport (>= 3.0.0)
@@ -398,6 +398,7 @@ DEPENDENCIES
   devise
   devise-i18n
   dotenv-rails
+  elasticsearch (~> 6.1.0)
   enum_help (~> 0.0.18)
   exception_notification
   factory_bot_rails

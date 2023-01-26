@@ -95,6 +95,7 @@ gem "refile-mini_magick"
 gem "simple_form"
 gem "rails-i18n"
 gem "searchkick", "3.1.1"
+gem "elasticsearch", "~> 6.1.0"
 gem "pretender"
 gem "annotate", group: :development
 gem "enum_help", "~> 0.0.18"
