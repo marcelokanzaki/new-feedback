@@ -1,5 +1,4 @@
 class Ciclo < ApplicationRecord
-
   has_many :equipes, -> { order(nome: :asc) }, dependent: :destroy
   has_many :participacoes, through: :equipes
   has_many :feedbacks, -> { order(created_at: :desc) }, through: :participacoes
