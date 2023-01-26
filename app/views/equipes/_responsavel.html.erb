@@ -10,7 +10,18 @@
   </div>
 
   <div class="lh-sm">
-    <div><%= usuario.nome.split.first %></div>
+    <div>
+      <%= usuario.nome.split.first %>
+      <% if current_usuario.sudo? %>
+        <a data-bs-toggle="dropdown" class="text-muted" href="#">
+          <%= icon "gear", size: 13 %>
+        </a>
+
+        <div class="dropdown-menu">
+          <%= link_to "Impersonate", impersonate_usuario_path(usuario), class: "dropdown-item" %>
+        </div>
+      <% end %>
+    </div>
     <div class="text-muted"><%= descricao %></div>
   </div>
 </div>

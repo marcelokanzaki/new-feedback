@@ -1,4 +1,4 @@
-<div class="mb-5 position-relative">
+<div class="mb-5 position-relative" id="<%= dom_id feedback %>">
   <div class="card" style="border-color: RGB(232, 229, 221); z-index: 10;">
     <% if feedback.avaliacao? %>
       <div class="card-body pb-0" style="background-color: rgba(248, 246, 242, 0.3);">
@@ -55,7 +55,7 @@
     <% if current_usuario == feedback.participante && !feedback.aprovado? %>
       <div class="card-footer py-3">
         <%= simple_form_for [:aprovar, feedback] do |f| %>
-          <%= f.input :comentario_do_participante, label: false, input_html: { placeholder: "Alguma observação sobre o feedback recebido?" } %>
+          <%= f.input :comentario_do_participante, label: false, input_html: { data: { controller: :autosize }, placeholder: "Alguma observação sobre o feedback recebido?" } %>
           <%= f.input :formato, label: "Como você recebeu o feedback?", as: :radio_buttons, collection: Feedback.formatos_i18n, wrapper: :vertical_collection_inline, required: true %>
           <div class="d-grid">
             <%= f.submit "Aprovar feedback", class: "btn btn-success" %>

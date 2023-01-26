@@ -26,6 +26,8 @@ class FeedbacksController < ApplicationController
 
   def aprovar
     @feedback.update(aprovar_params.merge(aprovado: true))
+    flash.now[:confetti] = true
+    render turbo_stream: turbo_stream.replace(@feedback)
   end
 
   private
@@ -45,7 +47,7 @@ class FeedbacksController < ApplicationController
   end
 
   def aprovar_params
-    params.require(:feedback).permit(:comentario_do_participante)
+    params.require(:feedback).permit(:formato, :comentario_do_participante)
   end
 
   def find_feedback

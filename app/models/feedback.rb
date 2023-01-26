@@ -1,5 +1,5 @@
 class Feedback < ApplicationRecord
-  searchkick
+  # searchkick
 
   CRITERIOS_DE_AVALIACAO = [:responsabilidade, :comprometimento, :produtividade, :atendimento_humanizado].freeze
 
@@ -14,9 +14,9 @@ class Feedback < ApplicationRecord
 
   scope :por_participante, -> participante { joins(:participacao).where(participacoes: { participante: participante }) }
 
-  after_create  :verifica_possivel_copia
-  after_update  :cache_possivel_copia, if: :possivel_copia?
-  after_destroy :cache_possivel_copia
+  # after_create  :verifica_possivel_copia
+  # after_update  :cache_possivel_copia, if: :possivel_copia?
+  # after_destroy :cache_possivel_copia
 
   after_update  :cache_conclusao_da_participacao, if: :aprovado?
   after_destroy :cache_conclusao_da_participacao
@@ -30,7 +30,7 @@ class Feedback < ApplicationRecord
 
   def cache_conclusao_da_participacao
     concluida = Feedback.where(participacao: participacao, aprovado: true).exists?
-    participacao.update_attributes(concluida: concluida)
+    participacao.update_attribute(:concluida, concluida)
   end
 
   def verifica_possivel_copia
