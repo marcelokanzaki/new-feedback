@@ -35,7 +35,7 @@
     <div class="card-body px-6 pt-5 pb-4" style="overflow-x: scroll;">
       <div id="<%= dom_id @equipe, :puzzle %>" class="puzzle clearfix">
         <%= render @equipe.participacoes %>
-        <%= render "equipes/add_participacao_btn", equipe: @equipe %>
+        <%= render "equipes/add_participacao_btn", equipe: @equipe if current_usuario.admin? %>
       </div>
 
       <%= turbo_frame_tag :participacoes_form, @equipe %>
