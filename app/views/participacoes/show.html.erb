@@ -2,9 +2,19 @@
   <div class="modal-content position-relative">
     <div class="modal-header align-items-center" style="position: sticky; top: 0; z-index: 1055; background-color: white;">
       <div class="d-flex align-items-center">
-        <span class="avatar">
-          <%= image_tag @participacao.participante.avatar_url, class: "avatar-img rounded-circle" %>
-        </span>
+
+        <div class="image-input image-input-circle">
+          <div class="image-input-wrapper w-60px h-60px" style="background-image: url(<%= @participacao.participante.avatar_url %>)"></div>
+
+          <label class="btn btn-icon btn-circle btn-active-color-primary w-20px h-20px bg-white shadow"
+            data-kt-image-input-action="change"
+            title="Change avatar" style="top: -2px; right: -2px;">
+
+            <%= icon "pencil-fill", size: 11, class: "text-muted" %>
+            <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
+            <input type="hidden" name="avatar_remove" />
+          </label>
+        </div>
 
         <div class="ms-2">
           <h5 class="modal-title mb-0 lh-sm"><%= @participacao.participante.nome %></h5>
@@ -19,8 +29,8 @@
             </div>
           </span>
         </div>
-      </div>
 
+      </div>
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
 
