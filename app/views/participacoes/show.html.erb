@@ -13,10 +13,11 @@
             <a data-bs-toggle="dropdown" class="text-muted" href="#">
               <%= icon "gear", size: 13 %>
             </a>
-
-            <div class="dropdown-menu">
-              <%= link_to "Impersonate", impersonate_usuario_path(@participacao.participante), class: "dropdown-item" %>
-            </div>
+            <% if current_usuario.admin? %>
+              <div class="dropdown-menu">
+                <%= link_to "Impersonate", impersonate_usuario_path(@participacao.participante), class: "dropdown-item" %>
+              </div>
+            <% end %>
           </span>
         </div>
       </div>
