@@ -42,6 +42,12 @@
   </div>
 
   <div class="col-xl-8">
+    <div class="col-auto p-3">
+      <%= form_for ciclo_path(@ciclo), class: 'd-flex', method: :get do %>
+          <%= text_field_tag :q, params[:q], class: 'form-control me-2', placeholder: 'Buscar equipe' %>
+          <%= submit_tag 'Buscar', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
     <%= turbo_frame_tag "nova-equipe", target: :_top %>
     <%= render @equipes %>
   </div>
