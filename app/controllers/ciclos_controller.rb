@@ -20,7 +20,7 @@ class CiclosController < ApplicationController
     when "minha-equipe" then @ciclo.equipes.joins(:participacoes).where(participacoes: { participante_id: current_usuario.id })
     when "hierarquia" then @ciclo.equipes.where(equipes: { avaliador_id: current_usuario.id }).take.try(:hierarquia) || []
     else
-      if params[:q]
+      if params[:q].present?
         @ciclo.equipes.where("lower(nome) like ?", "%#{params[:q].downcase}%")
       else
         @ciclo.equipes
