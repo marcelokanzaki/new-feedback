@@ -42,6 +42,25 @@
   </div>
 
   <div class="col-xl-8">
+    <%= form_with url: params.permit!, method: :get do %>
+      <div class="row g-3 mb-3">
+        <div class="col">
+          <div class="input-group">
+            <%= text_field_tag :q, params[:q], class: "form-control", placeholder: "Buscar equipe" %>
+            <% if params[:q].present? %>
+              <span class="input-group-text">
+                <%= link_to params.permit!.merge(q: nil) do %>
+                  <%= icon "x-lg" %>
+                <% end %>
+              </span>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-auto">
+          <%= submit_tag "Buscar", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end unless params[:view].present? %>
     <%= turbo_frame_tag "nova-equipe", target: :_top %>
     <%= render @equipes %>
   </div>
