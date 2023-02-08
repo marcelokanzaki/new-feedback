@@ -1,6 +1,13 @@
 <%= turbo_frame_tag @equipe do %>
-  <div class="card mb-5">
-    <div class="card-header d-flex align-items-center border-0 pt-5">
+  <div class="card mb-5 ribbon ribbon-start ribbon-clip">
+    <% if @equipe.participacoes.map(&:concluida?).all? %>
+      <div class="ribbon-label" style="top: 8px;">
+        Concluído
+        <span class="ribbon-inner bg-info"></span>
+      </div>
+    <% end %>
+
+    <div class="card-header d-flex align-items-center border-0 pt-7">
       <div class="col">
         <h3 class="card-title align-items-start flex-column">
           <span class="card-label fw-bolder text-dark fs-3"><%= @equipe.nome %></span>
