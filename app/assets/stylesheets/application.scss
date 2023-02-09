@@ -5,8 +5,14 @@
 @import 'trix/dist/trix';
 @import 'choices.js/public/assets/styles/choices';
 
-body {
-  background-color: #fbf9f6;
+.nav-pills-success {
+  .nav-link {
+    color: $success;
+
+    &.active {
+      background-color: $success;
+    }
+  }
 }
 
 .choices__list--dropdown {

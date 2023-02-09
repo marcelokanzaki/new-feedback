@@ -1,66 +1,10 @@
 <div class="row g-5 g-xxl-8">
   <div class="col-xl-4">
-    <div class="card sticky-top">
-      <div class="card-body d-flex">
-        <div>
-          <h2 class="fw-bolder text-dark fs-2"><%= @ciclo.nome %></h2>
-          <span class="text-muted mt-2 fw-bold fs-6">
-            <span><%= pluralize @ciclo.participacoes.count, "participante", "participantes" %>,</span>
-            <span><%= pluralize @ciclo.equipes.count, "equipe", "equipes" %></span>
-          </span>
-        </div>
-        <% if current_usuario.admin? %>
-          <div class="ms-auto">
-            <a data-bs-toggle="dropdown" class="text-muted" href=""><%= icon "gear", size: 14 %></a>
-
-            <div class="dropdown-menu">
-              <%= link_to "Nova equipe", new_ciclo_equipe_path(@ciclo), data: { turbo_frame: "nova-equipe" }, class: "dropdown-item" %>
-              <%= link_to "Editar ciclo", [:edit, @ciclo], class: "dropdown-item" %>
-              <%= link_to "Clonar ciclo", [:clonar, @ciclo], class: "dropdown-item", data: { turbo_method: :patch, turbo_confirm: "Tem certeza?" } %>
-              <%= link_to "Deletar ciclo", @ciclo, class: "dropdown-item text-danger", data: { turbo_method: :delete, turbo_confirm: "Tem certeza?" } %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-
-      <div class="card-footer">
-        <ul class="nav flex-column nav-pills">
-          <li class="nav-item">
-            <%= link_to "Todas as equipes", nil, class: "nav-link #{"active" unless params[:view]}" %>
-          </li>
-
-          <li class="nav-item">
-            <%= link_to "Hierarquia", params.permit!.merge(view: "hierarquia"), class: "nav-link #{"active" if params[:view] == "hierarquia"}" %>
-          </li>
-
-          <li class="nav-item">
-            <%= link_to "Minha equipe", params.permit!.merge(view: "minha-equipe"), class: "nav-link #{"active" if params[:view] == "minha-equipe"}" %>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <%= render "ciclos/resumo", ciclo: @ciclo %>
   </div>
 
   <div class="col-xl-8">
-    <%= form_with url: params.permit!, method: :get do %>
-      <div class="row g-3 mb-3">
-        <div class="col">
-          <div class="input-group">
-            <%= text_field_tag :q, params[:q], class: "form-control", placeholder: "Buscar equipe" %>
-            <% if params[:q].present? %>
-              <span class="input-group-text">
-                <%= link_to params.permit!.merge(q: nil) do %>
-                  <%= icon "x-lg" %>
-                <% end %>
-              </span>
-            <% end %>
-          </div>
-        </div>
-        <div class="col-auto">
-          <%= submit_tag "Buscar", class: "btn btn-primary" %>
-        </div>
-      </div>
-    <% end unless params[:view].present? %>
+    <%= render "ciclos/busca" %>
     <%= turbo_frame_tag "nova-equipe", target: :_top %>
     <%= render @equipes %>
   </div>

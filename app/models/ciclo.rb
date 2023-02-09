@@ -10,14 +10,10 @@ class Ciclo < ApplicationRecord
   scope :ordenado, -> { order(created_at: :desc) }
   scope :publico, -> { where(status: [1, 2]) }
 
-  def totalDeFeedbacks
-    quantidade_de_feedbacks
-  end
-
-  def equipe(participante)
-    equipes
-      .joins(:participantes)
-      .where(usuarios: { id: participante.id }).take
+  def percentual_conclusao
+    (equipes.concluida.count / equipes.count.to_f) * 100
+  rescue
+    0
   end
 end
 

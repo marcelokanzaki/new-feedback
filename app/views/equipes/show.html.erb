@@ -1,45 +1,45 @@
 <%= turbo_frame_tag @equipe do %>
-  <div class="card mb-5 ribbon ribbon-start ribbon-clip">
-    <% if @equipe.participacoes.map(&:concluida?).all? %>
-      <div class="ribbon-label" style="top: 8px;">
-        Concluído
-        <span class="ribbon-inner bg-info"></span>
+  <div class="card mb-5 overflow-hidden position-relative border-<%= @equipe.concluida? ? "success" : "0" %>">
+    <% if @equipe.concluida? %>
+      <div class="ribbon ribbon-triangle ribbon-top-start border-success">
+        <div class="ribbon-icon mt-n7 ms-n6 text-white">
+          <%= icon "check", size: 22 %>
+        </div>
       </div>
     <% end %>
 
-    <div class="card-header d-flex align-items-center border-0 pt-7">
-      <div class="col">
-        <h3 class="card-title align-items-start flex-column">
-          <span class="card-label fw-bolder text-dark fs-3"><%= @equipe.nome %></span>
-          <span class="text-muted mt-2 fs-7"><%= pluralize @equipe.participacoes.count, "participante", "participantes" %></span>
+    <div class="card-header d-flex align-items-center border-0">
+      <div class="col-auto">
+        <h3 class="mb-0">
+          <span class="align-middle"><%= @equipe.nome.truncate(40) %></span>
+          <% if current_usuario.admin? %>
+            <a data-bs-toggle="dropdown" class="text-muted ms-1" href="#">
+              <%= icon "gear", size: 13 %>
+            </a>
+
+            <div class="dropdown-menu">
+              <%= link_to "Editar", [:edit, @equipe], class: "dropdown-item" %>
+              <%= link_to "Deletar equipe", @equipe, class: "dropdown-item text-danger", data: { turbo_method: :delete, turbo_confirm: "Tem certeza?" } %>
+            </div>
+          <% end %>
         </h3>
+        <div class="mt-0 fs-7"><%= pluralize @equipe.participacoes.count, "participante", "participantes" %></div>
       </div>
 
       <% if @equipe.avaliador.present? %>
-        <div class="col-auto">
+        <div class="col-auto ms-8">
           <%= render "equipes/responsavel", usuario: @equipe.avaliador, descricao: "Avaliador" %>
         </div>
       <% end %>
 
       <% if @equipe.padrinho.present? %>
-        <div class="col-auto ms-7">
+        <div class="col ms-8">
           <%= render "equipes/responsavel", usuario: @equipe.padrinho, descricao: "Padrinho" %>
-        </div>
-      <% end %>
-
-      <% if current_usuario.admin? %>
-        <div class="col-auto ms-12">
-          <a data-bs-toggle="dropdown" class="text-muted" href=""><%= icon "gear" %></a>
-
-          <div class="dropdown-menu">
-            <%= link_to "Editar", [:edit, @equipe], class: "dropdown-item" %>
-            <%= link_to "Deletar equipe", @equipe, class: "dropdown-item text-danger", data: { turbo_method: :delete, turbo_confirm: "Tem certeza?" } %>
-          </div>
         </div>
       <% end %>
     </div>
 
-    <div class="card-body px-6 pt-5 pb-4" style="overflow-x: scroll;">
+    <div class="card-body px-6 pt-2 pb-4" style="overflow-x: scroll;">
       <div id="<%= dom_id @equipe, :puzzle %>" class="puzzle clearfix">
         <%= render @equipe.participacoes %>
         <%= render "equipes/add_participacao_btn", equipe: @equipe if current_usuario.admin? %>
@@ -47,5 +47,13 @@
 
       <%= turbo_frame_tag :participacoes_form, @equipe %>
     </div>
+
+    <% unless @equipe.concluida? %>
+      <div class="card-footer p-5">
+        <div class="progress">
+          <div class="progress-bar <%= @equipe.ciclo.encerrado? ? "bg-success" : "progress-bar-striped progress-bar-animated" %>" style="width: <%= @equipe.percentual_conclusao %>%"></div>
+        </div>
+      </div>
+    <% end %>
   </div>
 <% end %>

@@ -1,7 +1,12 @@
 class Feedback < ApplicationRecord
   # searchkick
 
-  CRITERIOS_DE_AVALIACAO = [:responsabilidade, :comprometimento, :produtividade, :atendimento_humanizado].freeze
+  CRITERIOS_DE_AVALIACAO = [
+    :responsabilidade,
+    :comprometimento,
+    :produtividade,
+    :atendimento_humanizado
+  ].freeze
 
   belongs_to :participacao
   belongs_to :autor, class_name: "Usuario"
@@ -10,17 +15,13 @@ class Feedback < ApplicationRecord
   has_one :equipe, through: :participacao
   has_one :ciclo, through: :equipe
 
-  enum formato: [:conversa_presencial, :video_chamada, :somente_registro_online]
+  enum formato: [
+    :conversa_presencial,
+    :video_chamada,
+    :somente_registro_online
+  ]
 
-  scope :por_participante, -> participante { joins(:participacao).where(participacoes: { participante: participante }) }
-
-  # after_create  :verifica_possivel_copia
-  # after_update  :cache_possivel_copia, if: :possivel_copia?
-  # after_destroy :cache_possivel_copia
-
-  after_update  :cache_conclusao_da_participacao, if: :aprovado?
-  after_destroy :cache_conclusao_da_participacao
-  after_save :atualizar_conclusao_da_equipe
+  after_update :concluir_participacao, if: :aprovado?
 
   def avaliacao?
     CRITERIOS_DE_AVALIACAO.map { |criterio| send(criterio).present? }.all?
@@ -28,12 +29,11 @@ class Feedback < ApplicationRecord
 
   private
 
-  def cache_conclusao_da_participacao
-    concluida = Feedback.where(participacao: participacao, aprovado: true).exists?
-    participacao.update_attribute(:concluida, concluida)
+  def concluir_participacao
+    participacao.update(concluida: true)
   end
 
-  def verifica_possivel_copia
+  def verificar_possivel_copia
     reindex
     possivel_copia = similar(
       fields: [:mensagem],
@@ -41,15 +41,6 @@ class Feedback < ApplicationRecord
       where: { autor_id: { all: [autor.id] }}
     ).any?
     update_attribute(:possivel_copia, possivel_copia)
-  end
-
-  def cache_possivel_copia
-    possivel_copia = Feedback.where(participacao: participacao, possivel_copia: true).exists?
-    participacao.update_attributes(com_copia: possivel_copia)
-  end
-
-  def atualizar_conclusao_da_equipe
-    equipe.update_attribute(:concluida, !equipe.participacoes.where(concluida: false).exists?)
   end
 end
 

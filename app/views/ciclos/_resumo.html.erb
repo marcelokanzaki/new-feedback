@@ -1,0 +1,48 @@
+<div class="card border-<%= ciclo.encerrado? ? "success" : "primary" %> sticky-top">
+  <div class="card-header flex-column g-0">
+    <h2 class="fw-bolder text-dark fs-3 mt-5 mb-0">
+      <%= ciclo.nome %>
+      <% if current_usuario.admin? %>
+        <a data-bs-toggle="dropdown" class="text-muted" href="">
+          <%= icon "gear", size: 14 %>
+        </a>
+
+        <div class="dropdown-menu">
+          <%= link_to "Nova equipe", new_ciclo_equipe_path(ciclo), data: { turbo_frame: "nova-equipe" }, class: "dropdown-item" %>
+          <%= link_to "Editar ciclo", [:edit, ciclo], class: "dropdown-item" %>
+          <%= link_to "Clonar ciclo", [:clonar, ciclo], class: "dropdown-item", data: { turbo_method: :patch, turbo_confirm: "Tem certeza?" } %>
+          <%= link_to "Deletar ciclo", ciclo, class: "dropdown-item text-danger", data: { turbo_method: :delete, turbo_confirm: "Tem certeza?" } %>
+        </div>
+      <% end %>
+    </h2>
+
+    <div class="text-muted fw-bold fs-7 mb-3">
+      <span><%= pluralize ciclo.participacoes.count, "participante", "participantes" %>,</span>
+      <span><%= pluralize ciclo.equipes.count, "equipe", "equipes" %></span>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <ul class="nav flex-column nav-pills nav-pills-<%= ciclo.encerrado? ? "success" : "primary" %>">
+      <li class="nav-item">
+        <%= link_to "Todas as equipes", nil, class: "nav-link #{"active" unless params[:view]}" %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to "Hierarquia", params.permit!.merge(view: "hierarquia"), class: "nav-link #{"active" if params[:view] == "hierarquia"}" %>
+      </li>
+
+      <li class="nav-item">
+        <%= link_to "Minha equipe", params.permit!.merge(view: "minha-equipe"), class: "nav-link #{"active" if params[:view] == "minha-equipe"}" %>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card-footer p-5">
+    <div class="progress" style="height: 16px;">
+      <div class="progress-bar <%= ciclo.encerrado? ? "bg-success" : "progress-bar-striped progress-bar-animated" %>" style="width: <%= ciclo.percentual_conclusao %>%">
+        <span class="fs-7 fw-bold"><%= number_to_percentage(ciclo.percentual_conclusao, precision: 1) %></span>
+      </div>
+    </div>
+  </div>
+</div>

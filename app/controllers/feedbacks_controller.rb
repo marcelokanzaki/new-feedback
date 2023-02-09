@@ -3,7 +3,13 @@ class FeedbacksController < ApplicationController
   before_action :find_feedback, only: [:aprovar]
 
   def new
-    @feedback = Feedback.new
+    placeholder_msg = <<~MSG
+      1. Alinhamento:\n
+      2. Ponto positivo e pontos a desenvolver:\n
+      3. Impactos gerados:\n
+      4. Mudanças  e manutenção (comparativo do desenvolvimento com ciclo anterior):
+    MSG
+    @feedback = Feedback.new(mensagem: placeholder_msg)
   end
 
   def create

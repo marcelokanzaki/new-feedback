@@ -7,15 +7,17 @@ class Equipe < ApplicationRecord
 
   validates_presence_of :nome
 
+  scope :concluida, -> { where(concluida: true) }
+
   def hierarquia
     children = Equipe.where(ciclo_id: ciclo_id, avaliador_id: participacoes.pluck(:participante_id))
     ([self] + children + children.map(&:hierarquia).flatten).uniq
   end
 
-  def conclusao
-    (participacoes.concluida.count / participacoes.count) * 100
+  def percentual_conclusao
+    (participacoes.concluida.count / participacoes.count.to_f) * 100
   rescue
-    nil
+    0
   end
 end
 

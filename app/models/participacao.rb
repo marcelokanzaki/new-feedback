@@ -1,25 +1,33 @@
 class Participacao < ApplicationRecord
   include ApplicationHelper
 
+  attachment :avatar
+
   belongs_to :equipe
   belongs_to :participante, class_name: "Usuario"
   belongs_to :agencia
-  attachment :avatar
   has_many :feedbacks, -> { order(created_at: :desc) }, dependent: :destroy
   has_one :ciclo, through: :equipe
 
-  validates :participante_id, on: :create, exclusion: { in: :participantes_do_ciclo }
+  validates :participante_id, on: :create, exclusion: { in: :participante_ids_do_ciclo }
   validates_uniqueness_of :participante_id, scope: [:equipe_id]
 
   scope :por_agencia, -> agencia { joins(:participante).where(agencia: agencia)  }
   scope :concluida, -> { where(concluida: true) }
 
   before_validation :set_agencia
+  after_update :tentar_concluir_equipe, if: :concluida?
 
   delegate :ciclo, to: :equipe
 
   def self.remove_avatars
-    update_all(avatar_id: nil, avatar_filename: nil, avatar_size: nil, avatar_content_type: nil, avatar_aprovado: false)
+    update_all(
+      avatar_id: nil,
+      avatar_filename: nil,
+      avatar_size: nil,
+      avatar_content_type: nil,
+      avatar_aprovado: false
+    )
   end
 
   def avatar_pendente?
@@ -28,12 +36,16 @@ class Participacao < ApplicationRecord
 
   private
 
-  def participantes_do_ciclo
-    equipe.ciclo.participacoes.pluck(:participante_id)
+  def participante_ids_do_ciclo
+    ciclo.participacoes.pluck(:participante_id)
   end
 
   def set_agencia
     self.agencia = participante.agencia
+  end
+
+  def tentar_concluir_equipe
+    equipe.update(concluida: equipe.participacoes.map(&:concluida?).all?)
   end
 end
 

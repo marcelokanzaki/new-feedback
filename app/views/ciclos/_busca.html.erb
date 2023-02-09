@@ -1,0 +1,21 @@
+<%= form_with url: params.permit!, method: :get do %>
+  <div class="row g-3 mb-3">
+    <div class="col">
+      <div class="input-group">
+        <%= text_field_tag :q, params[:q], class: "form-control border-#{@ciclo.encerrado? ? "success" : "primary"}", placeholder: "Buscar" %>
+
+        <% if params[:q].present? %>
+          <span class="input-group-text border<%= @ciclo.encerrado? ? "success" : "border-success" %>" style="background-color: #fff !important;">
+            <%= link_to params.permit!.merge(q: nil) do %>
+              <%= icon "x-lg", class: "text-success" %>
+            <% end %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-auto">
+      <%= submit_tag "Buscar", class: "btn btn-#{@ciclo.encerrado? ? "success" : "primary"}" %>
+    </div>
+  </div>
+<% end unless params[:view].present? %>
