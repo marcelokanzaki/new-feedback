@@ -14,9 +14,10 @@ class Participacao < ApplicationRecord
 
   scope :por_agencia, -> agencia { joins(:participante).where(agencia: agencia)  }
   scope :concluida, -> { where(concluida: true) }
+  scope :nao_concluida, -> { where(concluida: false) }
 
   before_validation :set_agencia
-  after_update :tentar_concluir_equipe, if: :concluida?
+  after_update :tentar_concluir_equipe
 
   delegate :ciclo, to: :equipe
 
@@ -45,7 +46,9 @@ class Participacao < ApplicationRecord
   end
 
   def tentar_concluir_equipe
-    equipe.update(concluida: equipe.participacoes.map(&:concluida?).all?)
+    if previous_changes[:concluida]
+      equipe.cache_conclusao!
+    end
   end
 end
 

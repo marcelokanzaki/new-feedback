@@ -19,6 +19,10 @@ class Equipe < ApplicationRecord
   rescue
     0
   end
+
+  def cache_conclusao!
+    update(concluida: participacoes.nao_concluida.empty?)
+  end
 end
 
 # == Schema Information

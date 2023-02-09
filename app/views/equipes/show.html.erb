@@ -51,7 +51,7 @@
     <% unless @equipe.concluida? %>
       <div class="card-footer p-5">
         <div class="progress">
-          <div class="progress-bar <%= @equipe.ciclo.encerrado? ? "bg-success" : "progress-bar-striped progress-bar-animated" %>" style="width: <%= @equipe.percentual_conclusao %>%"></div>
+          <div class="progress-bar <%= @equipe.ciclo.encerrado? ? "bg-primary" : "progress-bar-striped progress-bar-animated" %>" style="width: <%= @equipe.percentual_conclusao %>%"></div>
         </div>
       </div>
     <% end %>
